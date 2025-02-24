@@ -1,7 +1,7 @@
 function starClasification ()
 {
     navigator.mediaDevices.getUserMedia({audio: true});
-    classifier = ml5.soundClassifier("https://storage.googleapis.com/tm-model/X2TX9TJrV/model.json", modelReady);
+    classifier = ml5.soundClassifier("https://storage.googleapis.com/tm-model/NZLlR4bK7/model.json", modelReady);
 }
 function modelReady(){
     classifier.classify(gotResults);
@@ -26,22 +26,23 @@ function gotResults(error, results){
         img2=document.getElementById('ambu2')
         img3=document.getElementById('ambu3')
 
-        if(results[0].label=="Largo "){
-            img.src='ambulanciaencruce.jpg';
+        if(results[0].label=="Sonido corto"){
+            img.src='enmovimiento.gif';
             img2.src= 'ambulancialejos.jpg';
             img3.src= 'enservicio.jpg';
-
-        }else if(results[0].label=="Corto"){
+        }else if(results[0].label=="Sonido largo"){
+            img.src='ambulanciaencruce.jpg';
+            img2.src= 'alolargo.gif';
+            img3.src= 'enservicio.jpg';
+        }else if(results[0].label=="Sonido intermitente"){
             img.src='ambulanciaencruce.jpg';
             img2.src= 'ambulancialejos.jpg';
-            img3.src= 'enservicio.jpg';
-
-        }else if(results[0].label=="Entrecortado "){
+            img3.src= 'servicio.gif';
+        }else {
             img.src='ambulanciaencruce.jpg';
             img2.src= 'ambulancialejos.jpg';
             img3.src= 'enservicio.jpg';
         }
-    }
 
     }
-
+}
